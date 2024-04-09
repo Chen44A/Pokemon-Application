@@ -1,0 +1,146 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+body {
+    background:#C12A2E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    min-height: 100vh;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+   font-family:"Caveat", cursive; 
+   color: white;
+}
+
+select {
+    min-width: 250px; 
+    height: 30px;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0 10px;
+    color: #6a6a6a;
+}
+
+#submitBtn {
+    color: #C12A2E;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 2rem 0; 
+}
+
+
+/* section */
+
+.pokemon_Info{
+    background: white;
+    width: 50%;
+    min-width: 440px;
+    height: auto;
+    min-height: 70vh;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    position: relative;
+    margin-top: 10rem;
+}
+
+.pokemonImg {
+    position: absolute;
+    top: -25%; /* 调整图像相对于父容器顶部的位置 */
+    left: 50%; /* 将图像水平居中 */
+    transform: translateX(-50%); /* 将图像左移其自身宽度的一半，以实现水平居中 */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.type{
+    display: flex;
+    gap: 20px;
+}
+
+#pokemon_Info > div.type > p{
+    font-size: 0.8rem;
+    padding: 5px 8px;
+    border-radius: 99px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.basic_info{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h3{
+    margin: 50px 0 20px 0;
+}
+.base_stats{
+    margin-bottom: 2rem;
+}
+.stats_wrapper {
+    display: flex;
+    justify-content: right;
+    gap: 15px;
+}
+.statsValue {
+    width: 20px;
+}
+progress {
+    width: 200px;
+    height: 10px;
+    border-radius: 4px;
+    color: white;
+}
+
+progress::-webkit-progress-value {
+    background-color: #e9d600; /* 修改进度条颜色 */
+}
+
+
+#compareBtn {
+    background: #C12A2E;
+    color:white;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    margin: 2rem 0; 
+}
+
+/* Desktop */
+@media (min-width:430px){
+    .pokemon_Info{
+       margin-bottom: 6rem;
+    }
+}

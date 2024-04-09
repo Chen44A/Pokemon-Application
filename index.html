@@ -3,9 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Templet</title>
+    <title>Pokémon Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a2d649a589.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="logo-wrapper">
+      <img src="./assets/pokeball.svg" alt="pokeball" />
+      <h1>My Pokémon</h1>
+    </div>
+    <label for="pokemons"></label>
+    <select id="pokemons">
+      <option value="default">Choose your Pokémon</option>
+    </select>
+    <button type="button" id="submitBtn">Confirm</button>
+    <section id="pokemon_Info"></section>
+  </body>
 </html>
