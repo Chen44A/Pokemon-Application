@@ -7,8 +7,16 @@ let getData = async (url) => {
 const selectElement = document.querySelector('#pokemons');
 const submitBtn = document.querySelector('#submitBtn');
 const pokemon_Info = document.querySelector('#pokemon_Info');
+const overlay = document.querySelector('.overlay')
+const overlay_mask = document.querySelector('.overlay-mask');
+const pokemonOne = document.querySelector('#pokemonOne');
+const pokemonTwo = document.querySelector('#pokemonTwo');
 
 
+let toggleOverlay = () => {
+    overlay_mask.style.display = 'none'
+    overlay.style.display = 'none'
+}
 //------------------------------ generate all of pokemon at dropdown
 let genderPokemonsInDropdown = async (element) => {
     let pokemonsData = await getData('https://pokeapi.co/api/v2/pokemon?limit=151');
@@ -94,7 +102,7 @@ submitBtn.addEventListener('click', async() => {
     <div class='base_stats'>
         <div class='stats_wrapper' >
         <p class="statsName" style='color: ${typeColors[mainType]}'>HP</p>
-        <progress class="progress-bar" value='${stats[0]}' max="255"></progress>
+        <progress class="progress-bar" value='${stats[0]}' max="255" style="background: ${typeColors[mainType]};"></progress>
         <p class="statsValue" style='color: ${typeColors[mainType]}'>${stats[0]}</p>
         </div>
         <div class='stats_wrapper' >
@@ -128,4 +136,11 @@ submitBtn.addEventListener('click', async() => {
     compareBtn.id = 'compareBtn';
     compareBtn.innerText = 'Compare'
     pokemon_Info.appendChild(compareBtn);
+
+    compareBtn.addEventListener('click', ()=> {
+        overlay_mask.style.display = 'block'
+        overlay.style.display = 'block'
+    })
 })
+genderPokemonsInDropdown(pokemonOne);
+genderPokemonsInDropdown(pokemonTwo);

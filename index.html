@@ -20,7 +20,7 @@
   <body>
     <div class="logo-wrapper">
       <img src="./assets/pokeball.svg" alt="pokeball" />
-      <h1>My Pokémon</h1>
+      <a href="index.html"> <h1>My Pokémon</h1></a>
     </div>
     <label for="pokemons"></label>
     <select id="pokemons">
@@ -28,5 +28,24 @@
     </select>
     <button type="button" id="submitBtn">Confirm</button>
     <section id="pokemon_Info"></section>
+    <!-- overlay start-->
+    <div class="overlay-mask" style="display: none"></div>
+    <div class="overlay" style="display: none">
+      <button class="closeBtn" onclick="toggleOverlay()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <label for="pokemonOne"></label>
+      <select id="pokemonOne">
+        <option value="default">Pokémon One</option>
+      </select>
+      <p>VS</p>
+      <label for="pokemonTwo"></label>
+      <select id="pokemonTwo">
+        <option value="default">Pokémon Two</option>
+      </select>
+      <br />
+      <button id="compareConfirm">Confirm</button>
+    </div>
+    <!-- overlay end-->
   </body>
 </html>
