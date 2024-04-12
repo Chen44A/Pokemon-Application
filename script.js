@@ -11,19 +11,21 @@ const overlay = document.querySelector('.overlay')
 const overlay_mask = document.querySelector('.overlay-mask');
 const pokemonOne = document.querySelector('#pokemonOne');
 const pokemonTwo = document.querySelector('#pokemonTwo');
+const compareConfirmBtn = document.querySelector('#compareConfirmBtn')
 
 
 let toggleOverlay = () => {
     overlay_mask.style.display = 'none'
     overlay.style.display = 'none'
 }
+
 //------------------------------ generate all of pokemon at dropdown
 let genderPokemonsInDropdown = async (element) => {
     let pokemonsData = await getData('https://pokeapi.co/api/v2/pokemon?limit=151');
     // console.log(pokemonsData);
-    let pokemons = pokemonsData.results.map(pokemon => pokemon.name);
-    console.log(pokemons)
-    pokemons.forEach((pokemon,index) => {
+    let allPokemonsName = pokemonsData.results.map(pokemon => pokemon.name);
+    // console.log(allPokemonsName)
+    allPokemonsName.forEach((pokemon,index) => {
         const option = document.createElement('option');
         option.value = index + 1;
         option.innerText = pokemon;
@@ -31,6 +33,11 @@ let genderPokemonsInDropdown = async (element) => {
     })
 }
 genderPokemonsInDropdown(selectElement);
+
+//generate compare dropdown
+// genderPokemonsInDropdown(pokemonOne);
+genderPokemonsInDropdown(pokemonTwo);
+
 
 //------------------------------ Unit conversion
 let unitChange = (x) => x/10;
@@ -45,6 +52,13 @@ submitBtn.addEventListener('click', async() => {
     //fetch data
     let choosedPokemon = await getData(`https://pokeapi.co/api/v2/pokemon/${pokemonsId}/`)
     console.log(choosedPokemon);
+
+    //set pokemonOne in defalut value which is the first input value
+    let option = document.createElement('option');
+        option.innerText = choosedPokemon.name;
+        option.value = pokemonsId;
+        option.selected = true;
+        pokemonOne.appendChild(option);
 
     //set type of color
     const mainType = choosedPokemon.types[0].type.name;
@@ -90,7 +104,7 @@ submitBtn.addEventListener('click', async() => {
     let stats = choosedPokemon.stats.map(stat => stat.base_stat);
     console.log(stats);
     pokemon_Info.innerHTML = `
-    <img src = ${choosedPokemon.sprites.other.dream_world.front_default} class="pokemonImg" style="max-width: 200px; max-height:300px">
+    <img src = ${choosedPokemon.sprites.other.dream_world.front_default} class="pokemonImg" style="width: 220px; max-height:300px">
     <h2>${choosedPokemon.name}</h2>
     <div class="type">${eachTypeName} </div>
     <div class = "basic_info">
@@ -142,5 +156,16 @@ submitBtn.addEventListener('click', async() => {
         overlay.style.display = 'block'
     })
 })
-genderPokemonsInDropdown(pokemonOne);
-genderPokemonsInDropdown(pokemonTwo);
+
+
+compareConfirmBtn.addEventListener('click',() => {
+    let pokemon1 = pokemonOne.value
+    let pokemon2 = pokemonTwo.value;
+    if (pokemon1 === pokemon2){
+        alert('You selected the same Pokémon, please choose another one!')
+    }else {
+        localStorage.setItem('pokemonOne',pokemon1);
+        localStorage.setItem('pokemonTwo',pokemon2);
+        window.location.href = "compare.html";
+    }
+} )

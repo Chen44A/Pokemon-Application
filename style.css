@@ -43,7 +43,7 @@ select {
     color: #6a6a6a;
 }
 
-#submitBtn, #compareConfirm{
+#submitBtn, #compareConfirmBtn{
     color: #C12A2E;
     font-weight: bold;
     width: 100px;
@@ -59,8 +59,8 @@ select {
 
 .pokemon_Info{
     background: white;
-    width: 50%;
-    min-width: 440px;
+    width: 100%;
+    /* min-width: 375px; */
     height: auto;
     min-height: 70vh;
     border-radius: 16px;
@@ -69,7 +69,7 @@ select {
     align-items: center;
     justify-content: left;
     position: relative;
-    margin-top: 10rem;
+    margin-top: 13rem;
 }
 
 .pokemonImg {
@@ -81,7 +81,7 @@ select {
 
 h2 {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 30%;
     margin-bottom: 20px;
 }
 
@@ -191,8 +191,12 @@ div.overlay > p {
 
 
 /* ----- Desktop ----- */
-@media (min-width:440px){
+@media (min-width: 767px){  /* 屏幕宽度大于等于767px*/
     .pokemon_Info{
        margin-bottom: 6rem;
+       width: 50%;
+    }
+    h2 {
+        margin-top: 22%;
     }
 }
