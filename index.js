@@ -20,7 +20,7 @@ let toggleOverlay = () => {
 }
 
 //------------------------------ generate all of pokemon at dropdown
-let genderPokemonsInDropdown = async (element) => {
+let renderPokemonsInDropdown = async (element) => {
     let pokemonsData = await getData('https://pokeapi.co/api/v2/pokemon?limit=151');
     // console.log(pokemonsData);
     let allPokemonsName = pokemonsData.results.map(pokemon => pokemon.name);
@@ -32,11 +32,11 @@ let genderPokemonsInDropdown = async (element) => {
         element.appendChild(option);
     })
 }
-genderPokemonsInDropdown(selectElement);
+renderPokemonsInDropdown(selectElement);
 
 //generate compare dropdown
-genderPokemonsInDropdown(pokemonOne);
-genderPokemonsInDropdown(pokemonTwo);
+renderPokemonsInDropdown(pokemonOne);
+renderPokemonsInDropdown(pokemonTwo);
 
 //funcktion for set pokemonOnes default value
  let setDefaultPokemonOneValue = () => {
