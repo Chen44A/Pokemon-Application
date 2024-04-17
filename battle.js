@@ -19,10 +19,9 @@ class Pokemon {
         battle_log.innerText = `${this.name} vs ${opponent.name}!`;
 
         if (this.speed >= opponent.speed){
-            while (this.ph > 0 && opponent > 0 ) {
+            while (this.ph > 0 && opponent.ph > 0 ) {
                await this.attack(opponent,battle_log);
                await opponent.attack(this,battle_log);
-                if (this.ph <= 0 || opponent.ph <= 0) break;
             } 
 
             if (this.ph <= 0){
@@ -34,10 +33,9 @@ class Pokemon {
             }
 
         } else if (opponent.speed > this.speed){
-            while (this.ph > 0 && opponent > 0 ) {
+            while (this.ph > 0 && opponent.ph > 0 ) {
                 await opponent.attack(this,battle_log);
                 await this.attack(opponent,battle_log);
-                if (this.ph <= 0 || opponent.ph <= 0) break;
             } 
 
             if (this.ph <= 0){
@@ -52,10 +50,10 @@ class Pokemon {
    async attack (opponent, battle_log){
         for (let i = 0; i <this.moves.length; i++ ){
             let damage = Math.max(10,(this.atk + this.satk) - (opponent.def + opponent.sdef) * 0.8)
-            opponent.ph -= damage;
+            opponent.ph = Math.max(0, opponent.ph -damage);
 
             let p = document.createElement('p');
-            p.innerHTML = `<br/>${this.name} used ${this.moves[i].name} and did ${damage} damage. ${opponent.name} remaining HP: ${opponent.hp}`;
+            p.innerHTML = `<br/>${this.name} used ${this.moves[i].name} and did ${damage} damage. ${opponent.name} remaining HP: ${opponent.ph}`;
             battle_log.appendChild(p);
         }
     }
@@ -91,12 +89,12 @@ let getPokemons = async (name, opponentName) => {
         let pokemon = new Pokemon(
             pokemonData.name,
             pokemonData.sprites.other.dream_world.front_default,
-            pokemonData.stats[0],
-            pokemonData.stats[1],
-            pokemonData.stats[2],
-            pokemonData.stats[3],
-            pokemonData.stats[4],
-            pokemonData.stats[5],
+            pokemonData.stats[0].base_stat,
+            pokemonData.stats[1].base_stat,
+            pokemonData.stats[2].base_stat,
+            pokemonData.stats[3].base_stat,
+            pokemonData.stats[4].base_stat,
+            pokemonData.stats[5].base_stat,
             moves
         );
         
@@ -104,12 +102,12 @@ let getPokemons = async (name, opponentName) => {
         let opponent = new Pokemon(
             opponentData.name,
             opponentData.sprites.other.dream_world.front_default,
-            opponentData.stats[0],
-            opponentData.stats[1],
-            opponentData.stats[2],
-            opponentData.stats[3],
-            opponentData.stats[4],
-            opponentData.stats[5],
+            opponentData.stats[0].base_stat,
+            opponentData.stats[1].base_stat,
+            opponentData.stats[2].base_stat,
+            opponentData.stats[3].base_stat,
+            opponentData.stats[4].base_stat,
+            opponentData.stats[5].base_stat,
             opponentMoves
         );
 
