@@ -11,7 +11,7 @@ class Pokemon {
         this.moves = _moves;
     }
 
-    battle(opponent){
+    async battle(opponent){
         let winnerImg = document.querySelector('#winnerImg');
         let battle_log = document.querySelector('#battle_log');
         let whoIsWinner = document.querySelector('#whoIsWinner');
@@ -20,8 +20,8 @@ class Pokemon {
 
         if (this.speed >= opponent.speed){
             while (this.ph > 0 && opponent.ph > 0 ) {
-            this.attack(opponent,battle_log)
-            opponent.attack(this,battle_log);
+             await this.attack(opponent,battle_log).then(
+                await opponent.attack(this,battle_log));
             } 
 
             if (this.ph <= 0){
@@ -34,8 +34,7 @@ class Pokemon {
 
         } else if (opponent.speed > this.speed){
             while (this.ph > 0 && opponent.ph > 0 ) {
-                 opponent.attack(this,battle_log);
-                 this.attack(opponent,battle_log);
+               await opponent.attack(this,battle_log).then(this.attack(opponent,battle_log));
             } 
 
             if (this.ph <= 0){
@@ -47,20 +46,22 @@ class Pokemon {
             }
         }
     }
-    attack (opponent, battle_log){
+    async attack (opponent, battle_log){
         for (let i = 0; i <this.moves.length; i++ ){
             if (this.ph > 0 && opponent.ph > 0 ){
-            let damage = Math.max(10, Math.round(this.atk + this.satk) - (this.def + this.sdef) * 0.8)
+            let damage = Math.max(10, Math.round((this.atk + this.satk) - (this.def + this.sdef) * 0.8))
             //set the lowest ph is 0
             opponent.ph = Math.max(0,opponent.ph - damage) ;
 
             let p = document.createElement('p');
             p.innerHTML = `<br/>${this.name} used ${this.moves[i].name} and did ${damage} damage.<br/> ${opponent.name} remaining HP: ${opponent.ph}`;
             battle_log.appendChild(p);
+
+            await new Promise(resolve => setTimeout(resolve, 1000));
         }
         }
-       
     }
+
 
 }
 
