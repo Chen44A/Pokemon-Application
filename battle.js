@@ -16,12 +16,11 @@ class Pokemon {
         let battle_log = document.querySelector('#battle_log');
         let whoIsWinner = document.querySelector('#whoIsWinner');
 
-        battle_log.innerText = `${this.name} vs ${opponent.name}!`;
+        battle_log.innerText = `${this.name} VS ${opponent.name}!`;
 
         if (this.speed >= opponent.speed){
             while (this.ph > 0 && opponent.ph > 0 ) {
-               await this.attack(opponent,battle_log);
-               await opponent.attack(this,battle_log);
+             await this.attack(opponent,battle_log).then(await opponent.attack(this,battle_log));
             } 
 
             if (this.ph <= 0){
@@ -34,8 +33,8 @@ class Pokemon {
 
         } else if (opponent.speed > this.speed){
             while (this.ph > 0 && opponent.ph > 0 ) {
-                await opponent.attack(this,battle_log);
-                await this.attack(opponent,battle_log);
+                 opponent.attack(this,battle_log);
+                 this.attack(opponent,battle_log);
             } 
 
             if (this.ph <= 0){
@@ -47,15 +46,24 @@ class Pokemon {
             }
         }
     }
-   async attack (opponent, battle_log){
+    async attack (opponent, battle_log){
         for (let i = 0; i <this.moves.length; i++ ){
-            let damage = Math.max(10,(this.atk + this.satk) - (opponent.def + opponent.sdef) * 0.8)
-            opponent.ph = Math.max(0, opponent.ph -damage);
+            if (this.ph > 0 && opponent.ph > 0 ){
+            let damage = Math.max(10, parseInt(this.atk + this.satk) - (this.def + this.sdef) * 0.8)
+            //set the lowest ph is 0
+            opponent.ph = Math.max(0,opponent.ph - damage) ;
 
             let p = document.createElement('p');
-            p.innerHTML = `<br/>${this.name} used ${this.moves[i].name} and did ${damage} damage. ${opponent.name} remaining HP: ${opponent.ph}`;
+            p.innerHTML = `<br/>${this.name} used ${this.moves[i].name} and did ${damage} damage.<br/> ${opponent.name} remaining HP: ${opponent.ph}`;
             battle_log.appendChild(p);
+
+            await this.delay(1000);
         }
+        }
+       
+    }
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
 }
