@@ -52,6 +52,7 @@ select {
     border: 1px solid #ccc;
     border-radius: 8px;
     margin: 2rem 0; 
+    cursor: pointer; 
 }
 
 
@@ -90,7 +91,7 @@ h2 {
     gap: 20px;
 }
 
-#pokemon_Info > div.type > p{
+div.type > p{
     font-size: 0.8rem;
     padding: 5px 8px;
     border-radius: 99px;
@@ -131,7 +132,7 @@ progress::-webkit-progress-value {
 }
 
 
-#compareBtn {
+#compareBtn, #stridBtn {
     background: #C12A2E;
     color:white;
     font-weight: bold;
@@ -140,6 +141,7 @@ progress::-webkit-progress-value {
     border: none;
     border-radius: 8px;
     margin: 2rem 0; 
+    cursor: pointer; 
 }
 
 
@@ -187,9 +189,6 @@ div.overlay > p {
     font-weight: 800;
     margin: 10px 0;
 }
-
-
-
 /* ----- Desktop ----- */
 @media (min-width: 767px){  /* 屏幕宽度大于等于767px*/
     .pokemon_Info{
@@ -197,6 +196,156 @@ div.overlay > p {
        width: 50%;
     }
     h2 {
-        margin-top: 22%;
+        margin-top: 18%;
+    }
+}
+
+
+
+/* -----------------------------------------------------*/
+
+/* ----- Style for compare.html ----- */
+#compare, #battle {
+    justify-content: left;
+}
+
+.compare-logo-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    padding: 30px 30px 180px 30px;
+}
+.background_boll {
+    width: 130px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.2; 
+
+}
+#compare > div > a > p {
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    font-family:"Caveat", cursive; 
+    font-size: 1.2rem;
+    margin-left: 5px;
+}
+
+.compare_main {
+    width: 100%;
+    background: white;
+    border-radius: 16px;
+    text-align: center;
+}
+.pokemonInfo{
+    position: relative;
+}
+
+#pokemonImg {
+    height:150px;
+    max-width: 150px;
+    position: absolute;
+    top: -70%; /* 调整图像相对于父容器顶部的位置 */
+    left: 50%; /* 将图像水平居中 */
+    transform: translateX(-50%); /* 将图像左移其自身宽度的一半，以实现水平居中 */
+}
+.vs{
+    position: absolute;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: black;
+    top: 25%;
+    color: white;
+}
+.pokemon_wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 140px;
+}
+
+ .compare_pokemonName {
+    margin-top: 70px;
+ }
+
+ .types {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+ }
+ .types > p {
+    width: fit-content;
+    background: #78C850;
+    color: white;
+    padding: 0 10px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 99px;
+ }
+.compareTable {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 0;
+}
+ h3 {
+    text-align: center;
+ }
+
+table {
+    border-collapse: collapse;
+    padding: 20% 0;
+    background: #EEEEEE;
+    font-size: 0.8rem;
+}
+
+table, th, td {
+    width: fit-content;
+    /* border: 1px solid black; */
+    border-radius: 8px;
+    padding: 5% 35px;
+    letter-spacing: 0.8px;
+}
+.highlight {
+    color:red;
+    font-weight:bolder;
+  }
+
+/* 0% 表示动画的起始状态，100% 表示动画的结束状态 */
+@keyframes rainbow {
+/* 背景渐变色的位置在（X轴）的起点（0%），（Y轴）在中间（50%） */
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+div.message > span {
+    font-size: large;
+    font-weight: bolder;
+    background: linear-gradient(90deg, red, orange, yellow, green, violet);
+    background-size: 1500% 1500%;
+    animation: rainbow 10s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ----- Desktop ----- */
+@media (min-width: 1024px){  /* 屏幕宽度大于等于1024px*/
+    .compare_main {
+        width: 50%;
+        margin-bottom: 10%;
+    }
+    #pokemonImg {
+        height:180px;
+        max-width: 280px;
+    }
+
+    .compare_pokemonName {
+        margin-top: 80px;
+     }
+    .pokemon_wrapper {
+        gap: 300px;
+    }
+    .vs{
+        font-size: 2rem;
     }
 }

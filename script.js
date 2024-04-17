@@ -35,31 +35,36 @@ let genderPokemonsInDropdown = async (element) => {
 genderPokemonsInDropdown(selectElement);
 
 //generate compare dropdown
-// genderPokemonsInDropdown(pokemonOne);
+genderPokemonsInDropdown(pokemonOne);
 genderPokemonsInDropdown(pokemonTwo);
 
+//funcktion for set pokemonOnes default value
+ let setDefaultPokemonOneValue = () => {
+    const pokemonOneOptions = pokemonOne.querySelectorAll('option');
+    pokemonOneOptions.forEach(option => {
+        if (option.value === selectElement.value) {
+            // Set the selected option as default
+            option.selected = true;
+        } 
+    });
+ }
 
 //------------------------------ Unit conversion
 let unitChange = (x) => x/10;
 
 //------------------------------ get pokemon information
 submitBtn.addEventListener('click', async() => {
-    pokemon_Info.classList.add('pokemon_Info');
-
     let pokemonsId = selectElement.value;
     // console.log(pokemonsId);
-
+    
     //fetch data
     let choosedPokemon = await getData(`https://pokeapi.co/api/v2/pokemon/${pokemonsId}/`)
     console.log(choosedPokemon);
-
-    //set pokemonOne in defalut value which is the first input value
-    let option = document.createElement('option');
-        option.innerText = choosedPokemon.name;
-        option.value = pokemonsId;
-        option.selected = true;
-        pokemonOne.appendChild(option);
-
+    
+    //set pokemonOne in defalut value
+    setDefaultPokemonOneValue();
+    
+    pokemon_Info.classList.add('pokemon_Info');
     //set type of color
     const mainType = choosedPokemon.types[0].type.name;
     const typeColors = {

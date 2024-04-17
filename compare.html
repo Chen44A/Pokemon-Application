@@ -17,16 +17,54 @@
     <link rel="stylesheet" href="style.css" />
     <script src="compare.js" defer></script>
   </head>
-  <body>
-    <div class="logo-wrapper">
-      <img src="./assets/pokeball.svg" alt="pokeball" />
-      <a href="index.html"> <h1>My Pokémon</h1></a>
+  <body id="compare">
+    <div class="compare-logo-wrapper">
+      <a href="index.html">
+        <img
+          src="./assets/Pokémon_logo.svg"
+          alt="Pokémon_logo"
+          style="height: 50px"
+      /></a>
     </div>
-    <section>
-      <div class="pokemonOne"></div>
-      <p>VS</p>
-      <div class="pokemonTwo"></div>
+    <img src="./assets/pokeball.svg" alt="pokeball" class="background_boll" />
+    <section class="compare_main">
+      <div class="pokemon_wrapper">
+        <p class="vs">VS</p>
+      </div>
+      <div class="compareTable">
+        <h3>Specifications</h3>
+        <table class="specifications">
+          <tr class="compare_height">
+            <th>Height</th>
+          </tr>
+          <tr class="compare_weight">
+            <th>Weight</th>
+          </tr>
+        </table>
+        <h3>Base stats</h3>
+        <table class="Base_stats">
+          <tr class="hp">
+            <th>HP</th>
+          </tr>
+          <tr class="attack">
+            <th>ATK</th>
+          </tr>
+          <tr class="defense">
+            <th>DEF</th>
+          </tr>
+          <tr class="special-attack">
+            <th>SATK</th>
+          </tr>
+          <tr class="special-defense">
+            <th>SDEF</th>
+          </tr>
+          <tr class="speed">
+            <th>SPD</th>
+          </tr>
+        </table>
+      </div>
+      <div class="message"></div>
+      <a href="Battle.html"> <button id="stridBtn">Start strid</button></a>
     </section>
-    <section class="compareTable"></section>
   </body>
 </html>
