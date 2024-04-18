@@ -392,5 +392,9 @@ div.message > span {
 @media (min-width: 1024px){  /* 屏幕宽度大于等于1024px*/
     .battle_main{
         width: 50%;
+        margin-bottom: 10%;
+    }
+    #battle_log {
+        height: 300px;
     }
 }
