@@ -109,7 +109,7 @@ submitBtn.addEventListener('click', async() => {
     let stats = choosedPokemon.stats.map(stat => stat.base_stat);
     console.log(stats);
     pokemon_Info.innerHTML = `
-    <img src = ${choosedPokemon.sprites.other.dream_world.front_default} class="pokemonImg" style="width: 220px; max-height:300px">
+    <img src = ${choosedPokemon.sprites.other.dream_world.front_default} class="pokemonImg" style="width: 220px; max-height:220px">
     <h2>${choosedPokemon.name}</h2>
     <div class="type">${eachTypeName} </div>
     <div class = "basic_info">
