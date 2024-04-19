@@ -149,7 +149,7 @@ getPokemons('pokemonOne').then(() => {
 
         const winner = totalPointsLeft > totalPointsRight ? left : right
         const messageEl = document.querySelector('.message')
-        messageEl.innerHTML=`We have a winner! <span> ${winner} </span>`
+        messageEl.innerHTML=`<span> ${winner} </span> is stronger! Dare to battle?`
     });
 });
 

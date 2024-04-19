@@ -115,6 +115,7 @@ h3{
 .stats_wrapper {
     display: flex;
     justify-content: right;
+    align-items: center;
     gap: 15px;
 }
 .statsValue {
@@ -302,7 +303,7 @@ table {
 }
 
 table, th, td {
-    width: fit-content;
+    width: 320px;
     /* border: 1px solid black; */
     border-radius: 8px;
     padding: 5% 35px;
